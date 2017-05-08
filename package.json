@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "webpack",
+    "all": "npm run clean && webpack"
+  },
+  "dependencies": {
+    "preact": "^8.1.0",
+    "webpack": "^2.5.1"
+  }
+}
