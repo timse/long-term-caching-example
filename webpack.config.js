@@ -12,7 +12,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor']
+            name: ['vendor', 'runtime']
         })
     ]
 }
