@@ -10,6 +10,9 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: '[name].[chunkhash].js',
     },
+    externals: {
+        jquery: 'jQuery'
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.NamedChunksPlugin((chunk) => {
