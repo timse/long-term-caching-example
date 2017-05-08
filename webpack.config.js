@@ -23,7 +23,8 @@ module.exports = {
             return chunk.modules.map(m => path.relative(m.context, m.request)).join("_");
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'runtime']
+            name: ['vendor', 'runtime'],
+            minChunks: Infinity
         }),
         {
             apply(compiler) {
