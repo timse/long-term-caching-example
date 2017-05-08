@@ -4,6 +4,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         main: './src/foo',
+        other: './src/foo-two',
         vendor: ['preact']
     },
     output: {
