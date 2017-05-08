@@ -12,6 +12,7 @@ module.exports = {
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
+        new webpack.NamedChunksPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'runtime']
         }),
