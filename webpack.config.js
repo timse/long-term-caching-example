@@ -12,7 +12,12 @@ module.exports = {
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
-        new webpack.NamedChunksPlugin(),
+        new webpack.NamedChunksPlugin((chunk) => {
+            if (chunk.name) {
+                return chunk.name;
+            }
+            return chunk.modules.map(m => path.relative(m.context, m.request)).join("_");
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'runtime']
         }),
