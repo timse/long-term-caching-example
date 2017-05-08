@@ -1,0 +1,1 @@
+export default 'very async, so splitted';
