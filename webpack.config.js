@@ -24,5 +24,20 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'runtime']
         }),
+        {
+            apply(compiler) {
+                compiler.plugin("compilation", (compilation) => {
+                    compilation.plugin("before-module-ids", (modules) => {
+                        modules.forEach((module) => {
+                            if (module.id !== null) {
+                                return;
+                            }
+
+                            module.id = module.identifier();
+                        });
+                    });
+                });
+            }
+        }
     ]
 }
