@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const NameAllModulesPlugin = require('name-all-modules-plugin');
 
 module.exports = {
     entry: {
@@ -23,23 +24,12 @@ module.exports = {
             return chunk.modules.map(m => path.relative(m.context, m.request)).join("_");
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'runtime'],
+            name: 'vendor',
             minChunks: Infinity
         }),
-        {
-            apply(compiler) {
-                compiler.plugin("compilation", (compilation) => {
-                    compilation.plugin("before-module-ids", (modules) => {
-                        modules.forEach((module) => {
-                            if (module.id !== null) {
-                                return;
-                            }
-
-                            module.id = module.identifier();
-                        });
-                    });
-                });
-            }
-        }
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime'
+        }),
+        new NameAllModulesPlugin()
     ]
 }
